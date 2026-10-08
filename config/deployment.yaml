@@ -1,0 +1,27 @@
+roles:
+  robot:
+    - faster_lio_frontend
+    - spatial_link_agent
+    - local_safety_controller
+  edge:
+    - submap_receiver
+    - loop_detector
+    - graph_optimizer
+    - map_fusion
+
+transport:
+  same_host:
+    preferred: posix_shared_memory
+    fallback: dds
+  robot_to_edge:
+    preferred: dds
+    wire_protocol: rtps_udp
+
+message_contract:
+  required_fields:
+    - robot_id
+    - session_id
+    - sequence
+    - source_time_ns
+    - frame_id
+    - uncertainty
